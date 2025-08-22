@@ -1,163 +1,93 @@
 ---
 
-🏥 Health Application – Docker & Kubernetes Deployment Project
+# 🏥 Health Application – Docker & Kubernetes Deployment Project
 
-✅ Project Overview
+## ✅ Project Overview
 
-This project successfully delivered a containerized health web application and deployed it on Kubernetes with advanced features. It covered building the app with Docker, pushing to IBM Cloud Container Registry, deploying via Kubernetes, implementing Horizontal Pod Autoscaler (HPA), and managing rolling updates and rollbacks.
+This project successfully delivered a **containerized health web application** and deployed it on **Kubernetes** with advanced features. It covered building the app with Docker, pushing to IBM Cloud Container Registry, deploying via Kubernetes, implementing **Horizontal Pod Autoscaler (HPA)**, and managing **rolling updates and rollbacks**.
 
 The project demonstrates practical skills in cloud-native application lifecycle management and container orchestration.
 
-
 ---
 
-🎯 Objectives Achieved
+## 🎯 Objectives Achieved
 
 1. Built and deployed a simple health web application using Docker and Kubernetes
-
-
 2. Autoscaled the application using Horizontal Pod Autoscaler
-
-
-3. Performed Rolling Updates and Rollbacks to ensure zero-downtime deployment management
-
-
-
+3. Performed rolling updates and rollbacks for zero-downtime deployment
 
 ---
 
-🛠 Step-by-Step Achievements
+## 🛠 Step-by-Step Achievements
 
-1. Repository Setup and Environment
+### 1. Repository Setup and Environment
 
-Cloned project artifacts from GitHub:
+* Cloned project artifacts from GitHub and prepared the environment.
 
-git clone https://github.com/ibm-developer-skills-network/vuotu-containers-project.git
-cd vuotu-containers-project
+### 2. Containerization with Docker
 
-Verified environment readiness and project structure
+* Completed the multi-stage `Dockerfile` to build the health application image.
+  ![Dockerfile](images/dockerfile.png)
 
+* Built and tagged the image, pushed it to IBM Cloud Container Registry.
+  ![IBM Cloud Registry Images](images/crimages.png)
 
-2. Containerization with Docker
+### 3. Kubernetes Deployment
 
-Completed the multi-stage Dockerfile to build the health application image
+* Created and applied the `deployment.yml` manifest.
+  ![Deployment YAML Applied](images/deployment.png)
 
-Built the image and tagged it for the IBM Cloud Container Registry:
+* Exposed the application locally via port-forward and launched it in the browser.
+  ![Running Application](images/app.png)
+  ![Running Application Alternative](images/app2.png)
 
-docker build -t us.icr.io/<namespace>/patient-ui:v1 .
+### 4. Autoscaling
 
-Exported namespace variable:
+* Configured the Horizontal Pod Autoscaler (HPA).
+  ![HPA Created](images/hpa.png)
 
-export MY_NAMESPACE=sn-labs-$USERNAME
+* Generated load and observed autoscaling behavior.
+  ![HPA Scaling Under Load](images/hpa2.png)
 
-Pushed image to IBM Cloud:
+### 5. Rolling Updates & Rollbacks
 
-ibmcloud cr images
+* Updated the UI and pushed a new image.
+  ![Updated Image Built](images/uphealth.png)
 
-Verified successful push and image readiness
+* Applied the updated deployment and confirmed the UI changes.
+  ![Updated Application](images/up-app.png)
 
+* Verified rollout history and details.
+  ![Rollout History](images/rev.png)
 
-3. Kubernetes Deployment
-
-Created deployment.yml manifest with rolling update strategy:
-
-Defined replicas, container spec, resource requests/limits
-
-Configured patient-ui deployment with exposed port 8080
-
-
-Applied deployment to cluster:
-
-kubectl apply -f deployment.yml
-
-Exposed the application locally via port-forward:
-
-kubectl port-forward deployment.apps/patient-ui 8080:8080
-
-Launched and verified the running application in the browser
-
-
-4. Autoscaling
-
-Configured Horizontal Pod Autoscaler:
-
-kubectl autoscale deployment patient-ui --cpu-percent=50 --min=1 --max=10
-
-Verified HPA:
-
-kubectl get hpa patient-ui
-
-Generated synthetic load using BusyBox to trigger scaling:
-
-kubectl run -i --tty load-generator --rm --image=busybox:1.36.0 --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- <app URL>; done"
-
-Observed pod replicas increase dynamically:
-
-kubectl get hpa patient-ui --watch
-
-
-5. Rolling Updates & Rollbacks
-
-Edited login.html to customize UI (added developer name under the logo)
-
-Built and pushed updated Docker image
-
-Modified CPU resource values in deployment.yml to trigger rolling update
-
-Applied updated deployment and verified changes live
-
-Reviewed rollout history:
-
-kubectl rollout history deployment/patient-ui
-
-Identified revisions and performed rollback to a previous stable state:
-
-kubectl rollout undo deployment/patient-ui --to-revision=1
-
-Validated rollback via replica sets:
-
-kubectl get rs
-
-
+* Checked replica sets after updates and rollback.
+  ![Replica Sets](images/rs.png)
 
 ---
 
-📦 Deliverables
+## 📦 Deliverables
 
-Dockerfile – Multi-stage build for optimized images
-
-deployment.yml – Kubernetes deployment manifest with resource configuration
-
-patient-ui app – Simple health web UI for demo purposes
-
-IBM Cloud Container Registry image – Container image stored and deployed
-
-
+* **Dockerfile** – Multi-stage optimized build
+* **deployment.yml** – Kubernetes deployment manifest
+* **patient-ui** – Web frontend application
+* **Images folder** – Screenshots in `/images` for documentation
 
 ---
 
-🧠 Skills Demonstrated
+## 🧠 Skills Demonstrated
 
-Docker multi-stage builds and registry management
-
-Kubernetes Deployments and service exposure
-
-Horizontal Pod Autoscaling configuration
-
-Load testing with BusyBox containers
-
-Rolling updates and rollback strategies for zero-downtime releases
-
-
+* Docker image building and pushing to registry
+* Kubernetes deployments and rolling strategies
+* Horizontal Pod Autoscaling setup and testing
+* Load generation and cluster monitoring
+* Rolling updates and rollback management
 
 ---
 
-👨‍💻 Author
+## 👨‍💻 Author
 
-Developed and implemented by Ayoub CHAIEB
-Based on IBM Skills Network container orchestration final project materials
+Developed by **Ayoub CHAIEB**
+Based on IBM Skills Network final container orchestration project
 
 ---
-
-Would you like me to include screenshots placeholders (like ![Deployment Screenshot](app.png)) or add commands for service exposure to the internet?
-
+Would you like me to **deliver this README.md plus all your screenshots in a ready-to-push zip structure**? Or **generate a GitHub-friendly folder layout command you can run locally?**
