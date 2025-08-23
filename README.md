@@ -90,4 +90,3 @@ Developed by **Ayoub CHAIEB**
 Based on IBM Skills Network final container orchestration project
 
 ---
-Would you like me to **deliver this README.md plus all your screenshots in a ready-to-push zip structure**? Or **generate a GitHub-friendly folder layout command you can run locally?**
